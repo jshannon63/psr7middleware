@@ -14,8 +14,8 @@ class Psr7Middleware
 
     public function handle($request, Closure $next)
     {
-        // go ahead and complete the foundation middleware stack
-        // first before running the psr7 middleware stack.
+        // execute the foundation middleware stack before
+        // running the psr7 middleware stack.
         $response = $next($request);
 
         // convert foundation request/response objects to PSR-7.
@@ -24,6 +24,7 @@ class Psr7Middleware
         $psrResponse = $psr7Factory->createResponse($response);
 
         // psr7 middleware dispatcher
+        $relay = [];
         foreach($this->middleware as $middleware){
             $relay[] = new $middleware;
         }
@@ -32,7 +33,7 @@ class Psr7Middleware
             $psrResponse = $callable($psrRequest, $psrResponse, count($relay)?$relay[0]:null);
         }
 
-        // convert PSR-7 response/request objects back to foundation.
+        // convert PSR-7 response/request objects back to foundation and return.
         $httpFoundationFactory = new HttpFoundationFactory();
         return $httpFoundationFactory->createResponse($psrResponse);
 

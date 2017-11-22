@@ -7,11 +7,8 @@ use Psr\Http\Message\RequestInterface;
 
 class exampleMiddleware
 {
-    public function __invoke(
-        RequestInterface $request,
-        ResponseInterface $response,
-        callable $next = null
-    ) {
+    public function __invoke(RequestInterface $request, ResponseInterface $response, callable $next = null)
+    {
         if ($next) {
             $response = $next($request, $response);
         }
