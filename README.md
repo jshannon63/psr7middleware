@@ -96,7 +96,9 @@ reaches the Psr7Middleware class, Laravel will be forced to complete all the
 Foudation middlewares before executing the first PSR-7 middleware. Once the final
 PSR-7 middleware is executed, a Foundation response object will be returned.
   
-  
+## Middleware Sources
+
+For some middleware to use, take a look at [Relay.Middleware](https://github.com/relayphp/Relay.Middleware) and [oscarotero/psr7-middlewares](https://github.com/oscarotero/psr7-middlewares).
   
 ## Contributing
 

@@ -31,7 +31,7 @@ class Psr7Middleware
         $psrResponse = $psr7Factory->createResponse($response);
 
         // process the middleware stack using relay
-        $response = $relay($psrRequest, $psrResponse);
+        $psrResponse = $relay($psrRequest, $psrResponse);
 
         // convert PSR-7 response/request objects back to foundation and return.
         $httpFoundationFactory = new HttpFoundationFactory();
