@@ -3,10 +3,11 @@
 
 # Psr7Middleware - Use your PSR-7 compliant middleware in Laravel
 
+##### NOTE: A PSR-15 update to this package is in the works.
 
-Laravel uses the Symfony HTTPFoundation for it's Request and Response objects.
-These objects along with the format of the Laravel middleware stack makes
-it impossible to take advantage of a large number of useful PSR-7 compliant
+Laravel uses the Symfony HTTPFoundation Request and Response objects.
+These along with the format of the Laravel middleware stack makes
+it impossible to take advantage of the many useful PSR-7 compliant
 middleware packages that are available.
   
 Psr7Middleware is a Laravel compatible middleware that creates an abstraction 
@@ -57,27 +58,20 @@ use Psr\Http\Message\RequestInterface;
   
 class exampleMiddleware
 {
-    public function __invoke(
-        RequestInterface $request, 
-        ResponseInterface $response, 
-        callable $next = null)
-        {
+    public function __invoke(RequestInterface $request, ResponseInterface $response,  callable $next = null){
         if ($next) {
             $response = $next($request, $response);
         }
   
-        // analyze and/or modify your 
-        // request/response objects
-        // here using PSR-7 methods.
+        // middleware work is done here 
   
         return $response;
     }
 }
 ```
-##### Add each of your PSR-7 middlewares to app/Http/Middleware/Psr7Middleware.php
-```
-<?php
-  
+##### Add each of your PSR-7 middleware classes to app/Http/Middleware/Psr7Middleware.php
+```php
+
 namespace App\Http\Middleware;
   
 use Jshannon63\Psr7Middleware\Psr7Middleware as Middleware;
@@ -98,7 +92,7 @@ class Psr7Middleware extends Middleware
   
 Laravel will begin execution of the middelware stack according to the 
 order of definition within the Kernel.php file. Once the middleware dispatcher
-gets to the Psr7Middleware class, it Laravel will be forced to complete all the
+reaches the Psr7Middleware class, Laravel will be forced to complete all the
 Foudation middlewares before executing the first PSR-7 middleware. Once the final
 PSR-7 middleware is executed, the response object will be returned.
   
