@@ -1,0 +1,34 @@
+{
+    "name": "jshannon63/psr7middleware",
+    "description": "Use PSR-7 Compliant Middlewares in Laravel",
+    "keywords": ["middleware", "PSR-7", "Laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jim Shannon",
+            "email": "jim@hltky.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "symfony/psr-http-message-bridge": ">=1.0",
+        "zendframework/zend-diactoros": ">=1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jshannon63\\Psr7Middleware\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jshannon63\\Psr7Middleware\\Psr7MiddlewareServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
