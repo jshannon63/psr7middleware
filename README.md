@@ -94,7 +94,7 @@ Laravel will begin execution of the middelware stack according to the
 order of definition within the Kernel.php file. Once the middleware dispatcher
 reaches the Psr7Middleware class, Laravel will be forced to complete all the
 Foudation middlewares before executing the first PSR-7 middleware. Once the final
-PSR-7 middleware is executed, the response object will be returned.
+PSR-7 middleware is executed, a Foundation response object will be returned.
   
   
   
